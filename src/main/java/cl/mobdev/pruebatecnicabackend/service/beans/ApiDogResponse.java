@@ -13,11 +13,15 @@ public class ApiDogResponse {
     public ApiDogResponse() {
     }
 
-    public String getStatus() {
-        return status;
-    }
-
     public List<String> getMessage() {
         return message;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

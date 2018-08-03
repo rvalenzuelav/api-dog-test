@@ -32,13 +32,5 @@ public class TestResponse {
         this.images = images;
     }
 
-    @Override
-    public String toString() {
-        return "{" +
-                "breed='" + breed + '\'' +
-                ", subBreeds=" + subBreeds +
-                ", images=" + images +
-                '}';
-    }
 }
 

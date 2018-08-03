@@ -3,8 +3,8 @@ package cl.mobdev.pruebatecnicabackend.web.controller;
 import cl.mobdev.pruebatecnicabackend.service.ApiDogClientService;
 import cl.mobdev.pruebatecnicabackend.service.beans.ApiDogResponse;
 import cl.mobdev.pruebatecnicabackend.web.beans.TestResponse;
+import cl.mobdev.pruebatecnicabackend.web.mapper.ResponseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,27 +22,8 @@ public class ApiDogController {
     }
 
     @RequestMapping("/retrieve-breed-data")
-    public TestResponse retrieveBreedData(@RequestParam("breed-name") final String breedName)
-            throws MissingServletRequestParameterException {
-        if (breedName != null) {
-            return buildResponse(breedName);
-        } else {
-            return null;
-        }
+    public TestResponse retrieveBreedData(@RequestParam("breed-name") final String breedName) {
+        return ResponseMapper.buildResponse(breedName);
     }
 
-
-
-    private TestResponse buildResponse(final String breedName) {
-
-        ApiDogResponse subBreedResponse = apiDogClientService.getBreedSubBreedByName(breedName);
-        ApiDogResponse imagesResponse = apiDogClientService.getBreedImageByName(breedName);
-
-        TestResponse testResponse = new TestResponse();
-        testResponse.setBreed(breedName);
-        testResponse.setSubBreeds(subBreedResponse.getMessage());
-        testResponse.setImages(imagesResponse.getMessage());
-
-        return testResponse;
-    }
 }
